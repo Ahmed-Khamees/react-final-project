@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import NavigationBar from "./components/NavigationBar";
+import MediaDetails from "./components/MediaDetails";
+import { Search } from "./components/Search";
+import { EmptyPage } from "./components/EmptyPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" Component={Home} />
+          <Route path="/celebs" Component={EmptyPage} />
+          <Route path="/movies" Component={EmptyPage} />
+          <Route path="/blog" Component={EmptyPage} />
+          <Route path="/pages" Component={EmptyPage} />
+          <Route path="/tvshows" Component={EmptyPage} />
+          <Route path='/mediaDetails/:media_id' Component={MediaDetails} />
+          <Route path='/search/:query' Component={Search} />
+        </Routes>
+      </Router>
     </div>
   );
 }
